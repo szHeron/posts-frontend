@@ -25,7 +25,7 @@ export const Aside = styled.aside`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #fff;
+    background-color: #673AB7;
     height: 100%;
     width: 50%;
 `
