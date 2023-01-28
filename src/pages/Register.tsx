@@ -1,21 +1,28 @@
 import { FormEvent, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
+import Avatar, { genConfig } from 'react-nice-avatar'
 import useAuth from "../hook/useAuth"
 import AsideImage from "../assets/post-online.svg"
 import { Container, Form, SubTitle, Title, Input, Main, Aside } from "../styles/pages/styled.login"
 import { Button } from "../styles/Button"
 
-export default function Login(){
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
+interface UserData {
+    name: string;
+    email: string;
+    password: string;
+    avatar: object;
+}
+
+export default function Register(){
+    const [newUser, setNewUser] = useState<UserData>({name: "", email: "", password: "", avatar: genConfig()})
     const [error, setError] = useState("")
     const { signInWithEmailAndPasswordFirebase } = useAuth();
     const navigate = useNavigate()
 
     async function handleLogin(e: FormEvent){
         e.preventDefault()
-        if(email && password){
-            const response = await signInWithEmailAndPasswordFirebase(email, password)
+        if(newUser.email && newUser.password && newUser.name){
+            //const response = await signInWithEmailAndPasswordFirebase(email, password)
             navigate("/")
         }else{
             setError("Insira o email e senha!")
@@ -32,19 +39,23 @@ export default function Login(){
                     Olá, bem-vindo!
                 </Title>
                 <SubTitle>
-                    Faça o login para entrar na sua conta
+                    Realize o cadastro da sua conta!
                 </SubTitle>
                 <Form onSubmit={handleLogin}>
+                    <label>Nome</label>
+                    <Input onChange={e => setNewUser({...newUser, name: e.target.value})} placeholder="Seu nome"/>
                     <label>Email</label>
-                    <Input onChange={e => setEmail(e.target.value)} placeholder="Example.email.com"/>
+                    <Input onChange={e => setNewUser({...newUser, email: e.target.value})} placeholder="Seu email"/>
                     <label>Senha</label>
-                    <Input onChange={e => setPassword(e.target.value)} placeholder="Senha" type="password"/>
+                    <Input onChange={e => setNewUser({...newUser, password: e.target.value})} placeholder="Sua senha" type="password"/>
                     {error&&<span>{error}</span>}
+                    <label>Seu avatar</label>
+                    <Avatar style={{ width: '8rem', height: '8rem' }} {...newUser.avatar} />
                     <Button type="submit">
-                        ENTRAR
+                        CADASTRAR
                     </Button>
                     <SubTitle>
-                        Não possui uma conta? <Link to="/cadastro"> Clique aqui e crie ela!</Link>
+                        Já possui uma conta? <Link to="/login"> Clique aqui e entre nela!</Link>
                     </SubTitle>
                 </Form>
             </Main>
