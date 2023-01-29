@@ -33,17 +33,28 @@ export const Aside = styled.aside`
 export const Title = styled.h1`
     font-size: x-large;
     font-weight: 700;
+    margin: 8px;
 `
 
-export const SubTitle = styled.span`
+export const SubTitle = styled.p`
     color: gray;
     font-size: small;
     font-weight: 200;
 `
 
-export const Input = styled.input`
+export const ControledInput = styled.div`
     margin-bottom: 20px;
+    width: 100%;
+    
+    span {
+        color: #FF9494;
+        font-weight: 300;
+    }
+`
+
+export const Input = styled.input`
     padding: 18px;
+    margin-top: 5px;
     width: 100%;
     background-color: transparent;
     border: 1px solid ${({theme})=>theme.colors.primary};
@@ -71,7 +82,7 @@ export const Form = styled.form`
     margin-bottom: 20px;
     width: 50%;
 
-    label{
+    label {
         margin-bottom: 5px;
     }
 `

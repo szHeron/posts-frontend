@@ -2,7 +2,7 @@ import { FormEvent, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import useAuth from "../hook/useAuth"
 import AsideImage from "../assets/post-online.svg"
-import { Container, Form, SubTitle, Title, Input, Main, Aside } from "../styles/pages/styled.login"
+import { Container, Form, SubTitle, Title, Input, Main, Aside, ControledInput } from "../styles/pages/styled.login_register"
 import { Button } from "../styles/Button"
 
 export default function Login(){
@@ -35,11 +35,15 @@ export default function Login(){
                     Faça o login para entrar na sua conta
                 </SubTitle>
                 <Form onSubmit={handleLogin}>
-                    <label>Email</label>
-                    <Input onChange={e => setEmail(e.target.value)} placeholder="Example.email.com"/>
-                    <label>Senha</label>
-                    <Input onChange={e => setPassword(e.target.value)} placeholder="Senha" type="password"/>
-                    {error&&<span>{error}</span>}
+                    <ControledInput>
+                        <label>Email</label>
+                        <Input onChange={e => setEmail(e.target.value)} placeholder="Example.email.com"/>
+                    </ControledInput>
+                    <ControledInput>
+                        <label>Senha</label>
+                        <Input onChange={e => setPassword(e.target.value)} placeholder="Senha" type="password"/>
+                        {error&&<span>{error}</span>}
+                    </ControledInput>
                     <Button type="submit">
                         ENTRAR
                     </Button>
