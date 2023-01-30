@@ -1,17 +1,17 @@
-import { createContext, ReactNode, useState, useEffect } from "react";
+import { createContext, ReactNode, useState } from "react";
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
 import { db } from "../services/firebase";
 import { auth } from "../services/firebase";
-import { setDoc, collection, doc, getDoc } from "firebase/firestore";
+import { setDoc, doc, getDoc } from "firebase/firestore";
 
-type User = {
+export type UserProps = {
   id: string,
   name: string,
   avatar: object
 }
   
 type AuthContextType = {
-  user: User | undefined,
+  user: UserProps | undefined,
   signInWithEmailAndPasswordFirebase: (email: string, password: string) => Promise<void>
   signUpWithEmailAndPasswordFirebase: (email: string, password: string, name: string, avatar: object) => Promise<void>
 }
@@ -23,7 +23,7 @@ type AuthContextProviderProps = {
 export const AuthContext = createContext({} as AuthContextType);
 
 export default function AuthContextProvider(props: AuthContextProviderProps){
-    const [user, setUser] = useState<User>();
+    const [user, setUser] = useState<UserProps>();
 
     // useEffect(()=>{
     //   const unsubscribe = auth.onAuthStateChanged(user =>{
@@ -77,13 +77,15 @@ export default function AuthContextProvider(props: AuthContextProviderProps){
           return docSnap.data()
         } else {
           console.log("Não foi possível encontrar o usuário");
+          throw new Error("Não foi possível encontrar o usuário");
         }
       }catch(error){
         console.log("Erro ao recuperar o usuário:", error);
+        throw new Error("Erro ao recuperar o usuário");
       }
     }
 
-    async function registerNewUser(user: User){
+    async function registerNewUser(user: UserProps){
       try{
         const userRef = await setDoc(doc(db, "users", user.id), user)
       }catch(e){
