@@ -55,6 +55,7 @@ export const ControledInput = styled.div`
 export const Input = styled.input`
     padding: 18px;
     margin-top: 5px;
+    margin-bottom: 5px;
     width: 100%;
     background-color: transparent;
     border: 1px solid ${({theme})=>theme.colors.primary};

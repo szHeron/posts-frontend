@@ -8,4 +8,5 @@ export const Container = styled.div`
     background: ${({theme})=>theme.colors.background};
     color: white;
     overflow-x: hidden;
+    min-height: 100vh;
 `

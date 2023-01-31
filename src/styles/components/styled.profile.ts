@@ -9,17 +9,22 @@ export const ProfileContainer = styled.div`
     border-radius: 8px;
     left: 80%;
     background: rgba(255, 255, 255, 0.2);
-    color: white;
-    font-weight: 600;
 
     p{
-        margin: 0 0 8px 0;
+        margin: 0 0 4px 0;
     }
 
-    span {
-        font-weight: 400;
-        gap: 5px;
+    button {
         display:flex;
-        justify-content: flex-end;
+        align-items: center;
+        cursor: pointer;
+        font-weight: 300;
+        padding: 0;
+        font-size: 1em;
+        color: white;
+        gap: 5px;
+        background-color: transparent;
+        border: none;
     }
+
 `

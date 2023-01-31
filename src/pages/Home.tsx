@@ -9,7 +9,7 @@ export default function Home(){
     return (
         <Container>
             {
-                user&&<Profile user={user}/>
+                user?<Profile user={user}/>:<Profile user={null}/>
             }
             <Post/>
         </Container>

@@ -1,22 +1,39 @@
-import { FormEvent, useState } from "react"
-import { Link, useNavigate } from "react-router-dom"
+import { FormEvent, useEffect, useState } from "react"
+import { Link, redirect, useNavigate } from "react-router-dom"
 import useAuth from "../hook/useAuth"
 import AsideImage from "../assets/post-online.svg"
 import { Container, Form, SubTitle, Title, Input, Main, Aside, ControledInput } from "../styles/pages/styled.login_register"
 import { Button } from "../styles/Button"
+import { ErrorData } from "@firebase/util"
 
 export default function Login(){
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [error, setError] = useState("")
-    const { signInWithEmailAndPasswordFirebase } = useAuth();
+    const { signInWithEmailAndPasswordFirebase, user } = useAuth();
     const navigate = useNavigate()
+
+    useEffect(()=>{
+        console.log("eae")
+        function userIsConected(){
+            if(user) {
+                navigate("/")
+            }
+        }
+        userIsConected()
+    },[user])
 
     async function handleLogin(e: FormEvent){
         e.preventDefault()
         if(email && password){
-            const response = await signInWithEmailAndPasswordFirebase(email, password)
-            navigate("/")
+            try {
+                const response = await signInWithEmailAndPasswordFirebase(email, password)
+                navigate("/")
+            }catch (err: unknown) {
+                if (err instanceof Error) {
+                    setError(err.message)
+                };
+            }
         }else{
             setError("Insira o email e senha!")
         }
