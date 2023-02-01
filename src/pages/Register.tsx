@@ -1,6 +1,7 @@
 import { FormEvent, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
-import Avatar, { genConfig } from 'react-nice-avatar'
+import Avatar, { genConfig } from "react-nice-avatar"
+import { EditAvatar } from "../components/EditAvatar"
 import useAuth from "../hook/useAuth"
 import AsideImage from "../assets/post-online.svg"
 import { Container, Form, SubTitle, Title, Input, Main, Aside, ControledInput } from "../styles/pages/styled.login_register"
@@ -72,6 +73,7 @@ export default function Register(){
                     </ControledInput>
                     <label>Seu avatar</label>
                     <Avatar style={{ width: '8rem', height: '8rem' }} {...newUser.avatar} />
+                    <EditAvatar/>
                     <Button type="submit">
                         CADASTRAR
                     </Button>
