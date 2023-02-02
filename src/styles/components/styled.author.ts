@@ -5,7 +5,7 @@ export const AuthorContainer = styled.div`
     flex-direction: row;
     align-items: flex-start;
     width: 50vw;
-    background: ${({theme})=>theme.colors.background};
+    background-color: ${({theme})=>theme.colors.background};
     color: white;
     font-weight: 600;
 `

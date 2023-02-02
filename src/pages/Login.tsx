@@ -1,10 +1,10 @@
 import { FormEvent, useEffect, useState } from "react"
-import { Link, redirect, useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import useAuth from "../hook/useAuth"
 import AsideImage from "../assets/post-online.svg"
-import { Container, Form, SubTitle, Title, Input, Main, Aside, ControledInput } from "../styles/pages/styled.login_register"
+import { Container, Form, SubTitle, Title, Main, Aside, ControledInput } from "../styles/pages/styled.login_register"
+import { Input } from "../styles/Input"
 import { Button } from "../styles/Button"
-import { ErrorData } from "@firebase/util"
 
 export default function Login(){
     const [email, setEmail] = useState("")
