@@ -37,6 +37,11 @@ export const PostContent = styled(Dialog.Content)`
     form {
         display: flex;
         flex-direction: column;
+
+        span {
+            color: #FF9494;
+            font-weight: 300;
+        }
     }
 `
 
@@ -62,7 +67,7 @@ export const ContentInput = styled.div`
         }
     }
 
-    span    {
+    p    {
         width: 40%;
         text-align: center;
         color: gray;

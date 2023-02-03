@@ -14,7 +14,6 @@ export default function Login(){
     const navigate = useNavigate()
 
     useEffect(()=>{
-        console.log("eae")
         function userIsConected(){
             if(user) {
                 navigate("/")
