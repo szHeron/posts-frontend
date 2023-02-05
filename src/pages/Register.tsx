@@ -1,12 +1,11 @@
 import { FormEvent, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import Avatar, { genConfig } from "react-nice-avatar"
-import { EditAvatar } from "../components/EditAvatar"
 import useAuth from "../hook/useAuth"
 import AsideImage from "../assets/post-online.svg"
-import { Container, Form, SubTitle, Title, Main, Aside, ControledInput } from "../styles/pages/styled.login_register"
+import { Container, Form, SubTitle, Title, Main, Aside, ControledInput, AvatarContent } from "../styles/pages/styled.login_register"
 import { Input } from "../styles/Input"
-import { Button } from "../styles/Button"
+import { Button, ButtonOutline } from "../styles/Button"
 
 interface UserData {
     name: string;
@@ -18,7 +17,7 @@ interface UserData {
 export default function Register(){
     const [newUser, setNewUser] = useState<UserData>({name: "", email: "", password: "", avatar: genConfig()})
     const [error, setError] = useState({errorInName:"", errorInEmail: "", errorInPassword: "", errorInResponse: ""})
-    const { signUpWithEmailAndPasswordFirebase } = useAuth();
+    const { signUpWithEmailAndPasswordFirebase } = useAuth()
     const navigate = useNavigate()
 
     async function handleLogin(e: FormEvent){
@@ -73,8 +72,12 @@ export default function Register(){
                         {error.errorInResponse&&<span>{error.errorInResponse}</span>}
                     </ControledInput>
                     <label>Seu avatar</label>
-                    <Avatar style={{ width: '8rem', height: '8rem' }} {...newUser.avatar} />
-                    <EditAvatar/>
+                    <AvatarContent>
+                        <Avatar style={{width: "8rem", height: "8rem" }} {...newUser.avatar} />
+                        <ButtonOutline type="button" onClick={()=>setNewUser({...newUser, avatar: genConfig()})}>
+                            Atualize seu avatar
+                        </ButtonOutline>
+                    </AvatarContent>
                     <Button type="submit">
                         CADASTRAR
                     </Button>

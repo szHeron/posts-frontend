@@ -40,6 +40,7 @@ export const SubTitle = styled.p`
     color: gray;
     font-size: small;
     font-weight: 200;
+    margin: 0px;
 `
 
 export const ControledInput = styled.div`
@@ -50,6 +51,14 @@ export const ControledInput = styled.div`
         color: #FF9494;
         font-weight: 300;
     }
+`
+
+export const AvatarContent = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
 `
 
 export const Form = styled.form`
