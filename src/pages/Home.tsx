@@ -7,10 +7,12 @@ import { Post } from "../components/Post"
 import { Profile } from "../components/Profile"
 import useAuth from "../hook/useAuth"
 import { NewPost } from "../components/NewPost"
+import { UserProps } from "../context/AuthContext";
 
 export interface PostProps {
     content: string
     description: string
+    author: UserProps
 }
 
 export default function Home(){
@@ -20,48 +22,44 @@ export default function Home(){
 
     useEffect(()=>{
         async function getPosts() {
-            setLoading(true)
             const q = query(collection(db, "posts"));
             const querySnapshot = await getDocs(q);
             let tempPosts: Array<DocumentData> = []
+
             querySnapshot.forEach((doc) => {
                 tempPosts.push(doc.data())
             })
+
             setPosts(tempPosts)
-            setLoading(false)
         }
+        setLoading(true)
+        getPosts()
+        setLoading(false)
+    }, [user])
 
-        if(!posts.length)
-            getPosts()
-    }, [])
-
-    if(loading)
+    if(loading){
         return (
             <ActivityIndicator/>
-        )
-
-    if(!user){
-        return (
-            <Container>
-                <Profile user={null}/>
-                {posts.map((post)=>{
-                    return (
-                        <Post description={post.description} content={post.content}/>
-                    )
-                })}
-            </Container>
         )
     }else{
         return (
             <Container>
-                <NewPost/>
-                <Profile user={user}/>
-                {posts.map((post)=>{
+                {
+                    !user?(
+                        <Profile user={null}/>
+                    ):(
+                        <>
+                            <NewPost/>
+                            <Profile user={user}/>
+                        </>
+                    )          
+                }
+                {posts.map((post, index)=>{
                     return (
-                        <Post description={post.description} content={post.content}/>
+                        <Post key={index} description={post.description} content={post.content} author={post.author}/>
                     )
                 })}
             </Container>
-        )  
+        )
     }
 }

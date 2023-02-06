@@ -4,9 +4,11 @@ import { collection, addDoc } from "firebase/firestore";
 import { db } from "../services/firebase";
 import { NewPostTrigger, PostContent, CloseModal, ContentInput, Description } from "../styles/components/styled.newpost"
 import { Button } from "../styles/Button"
+import useAuth from "../hook/useAuth";
 
 export function NewPost(){
-    const [postContent, setPostContent] = useState({description: "", content:""})
+    const { user } = useAuth();
+    const [postContent, setPostContent] = useState({description: "", content:"", author: user})
     const [error, setError] = useState("")
 
     async function handleCreateNewPost(e: FormEvent){

@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const PostContainer = styled.div`
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     width: 50vw;
     color: white;
     padding: 10px;
@@ -25,6 +25,6 @@ export const PostImage = styled.img`
     }
 `
 
-export const TextArea = styled.p`
+export const Description = styled.p`
     font-weight: 400;
 `

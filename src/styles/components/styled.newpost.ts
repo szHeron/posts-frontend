@@ -10,13 +10,17 @@ export const NewPostTrigger = styled(Dialog.Trigger)`
     padding: 10px;
     margin-top: 15px;
     margin-bottom: 15px;
+    border: 1px solid ${({theme})=>theme.colors.activity};
     border-radius: 12px;
     background-color: rgba(108, 0, 255, 0.1);
     transition: all;
     cursor: pointer;
 
     :hover {
-        padding: 15px;
+        svg {
+            height: 68px;
+            width: 68px;
+        }
     }
 `
 

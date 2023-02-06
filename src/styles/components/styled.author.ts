@@ -8,11 +8,8 @@ export const AuthorContainer = styled.div`
     background-color: ${({theme})=>theme.colors.background};
     color: white;
     font-weight: 600;
-`
 
-export const Avatar = styled.img`
-    height: 50px;
-    width: 50px;
-    border-radius: 50%;
-    margin-right: 12px;
+    p{
+        margin: 0 0 0 8px;
+    }
 `
