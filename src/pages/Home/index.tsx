@@ -17,16 +17,16 @@ export interface PostProps {
 
 export default function Home(){
     const { user } = useAuth()
-    const [ posts, setPosts ] = useState<DocumentData[]>([]);
+    const [ posts, setPosts ] = useState<PostProps[]>([]);
     const [ loading, setLoading ] = useState(true)
 
     async function getPosts() {
         const q = query(collection(db, "posts"));
         const querySnapshot = await getDocs(q);
-        let tempPosts: Array<DocumentData> = []
+        let tempPosts: Array<PostProps> = []
 
         querySnapshot.forEach((doc) => {
-            tempPosts.push(doc.data())
+            tempPosts.push(doc.data() as PostProps)
         })
 
         setPosts(tempPosts)
