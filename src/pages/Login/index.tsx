@@ -6,11 +6,13 @@ import { Container, Form, SubTitle, Title, Main, Aside, ControledInput } from ".
 import { Input } from "../../styles/Input"
 import { Button } from "../../styles/Button"
 import { Redirect } from "../Register/styles"
+import ActivityIndicator from "../../components/ActivityIndicator/ActivityIndicator"
 
 export default function Login(){
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [error, setError] = useState("")
+    const [loading, setLoading] = useState(false)
     const { signInWithEmailAndPasswordFirebase, user } = useAuth();
     const navigate = useNavigate()
 
@@ -61,8 +63,8 @@ export default function Login(){
                         <Input onChange={e => setPassword(e.target.value)} placeholder="Sua senha" type="password"/>
                         {error&&<span>{error}</span>}
                     </ControledInput>
-                    <Button type="submit">
-                        ENTRAR
+                    <Button disabled={loading} type="submit">
+                        {loading?<ActivityIndicator absolute={false}/>:<>ENTRAR</>}
                     </Button>
                     <Redirect>
                         Não possui uma conta? <Link to="/cadastro"> Clique aqui e crie ela!</Link>

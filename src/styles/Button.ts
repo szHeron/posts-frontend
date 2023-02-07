@@ -16,6 +16,10 @@ export const Button = styled.button`
         cursor: pointer;
         background-color: ${({theme})=>theme.colors.hover};
     }
+
+    :disabled {
+        opacity: 0.4;
+    }
 `
 
 export const ButtonOutline = styled.button`

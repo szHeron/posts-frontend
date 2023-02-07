@@ -40,7 +40,7 @@ export default function Home(){
 
     if(loading){
         return (
-            <ActivityIndicator/>
+            <ActivityIndicator absolute/>
         )
     }else{
         return (

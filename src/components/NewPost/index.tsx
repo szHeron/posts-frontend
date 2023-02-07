@@ -45,6 +45,7 @@ export function NewPost(props: NewPostProps){
             }
             await addDoc(collection(db, "posts"), {...postContent, content: image_url})
             setMessage({...message, success: "Post realizado com sucesso"})
+            setPostContent({description: "", content: null, author: user})
             setLoading(false)
         }else{
             setMessage({...message, error: "Insira a descrição do post!"})
@@ -52,7 +53,7 @@ export function NewPost(props: NewPostProps){
     }
 
     if(loading){
-        return <ActivityIndicator/>
+        return <ActivityIndicator absolute/>
     }
 
     return(

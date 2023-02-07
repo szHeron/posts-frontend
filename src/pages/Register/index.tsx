@@ -7,6 +7,7 @@ import { AvatarContent, AvatarAndPassword, Container, Redirect, Form, SubTitle, 
 import { Input } from "../../styles/Input"
 import { Button } from "../../styles/Button"
 import { Avatar } from "../../components/Avatar"
+import ActivityIndicator from "../../components/ActivityIndicator/ActivityIndicator"
 
 interface UserData {
     name: string;
@@ -19,20 +20,23 @@ export default function Register(){
     const [newUser, setNewUser] = useState<UserData>({name: "", email: "", password: "", avatar: ""})
     const [confirmPassword, setConfirmPassword] = useState("")
     const [error, setError] = useState({errorInName:"", errorInEmail: "", errorInPassword: "", errorInResponse: ""})
+    const [loading, setLoading] = useState(false)
     const { signUpWithEmailAndPasswordFirebase } = useAuth()
     const navigate = useNavigate()
 
-    async function handleLogin(e: FormEvent){
+    async function handleRegister(e: FormEvent){
         e.preventDefault()
         let erros = {errorInName:"", errorInEmail: "", errorInPassword: "", errorInResponse: ""}
         if(newUser.email && newUser.password && newUser.name && newUser.password === confirmPassword){
+            setLoading(true)
             try{
-                const response = await signUpWithEmailAndPasswordFirebase(newUser.email, newUser.password, newUser.name, newUser.avatar)
+                await signUpWithEmailAndPasswordFirebase(newUser.email, newUser.password, newUser.name, newUser.avatar)
                 navigate("/")
             }catch(e){
                 console.log("Erro ao cadastrar usuario, tente novamente mais tarde!", e)
                 setError({...error, errorInResponse: "Erro ao cadastrar usuario, tente novamente mais tarde!"})
             }
+            setLoading(false)
         }else{
             if(!newUser.email)
                 erros = {...erros, errorInEmail: "Insira o email corretamente!"}
@@ -58,7 +62,7 @@ export default function Register(){
                 <SubTitle>
                     Realize o cadastro da sua conta!
                 </SubTitle>
-                <Form onSubmit={handleLogin}>
+                <Form onSubmit={handleRegister}>
                     <ControledInput>
                         <label>Nome</label>
                         <Input maxLength={255} onChange={e => setNewUser({...newUser, name: e.target.value})} placeholder="Seu nome"/>
@@ -95,8 +99,8 @@ export default function Register(){
                             )}
                         </Dropzone>
                     </AvatarAndPassword>
-                    <Button type="submit">
-                        CADASTRAR
+                    <Button disabled={loading} type="submit">
+                        {loading?<ActivityIndicator absolute={false}/>:<>CADASTRAR</>}
                     </Button>
                     <Redirect>
                         Já possui uma conta? <Link to="/login"> Clique aqui e entre nela!</Link>
