@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react"
 import { query, collection, getDocs, DocumentData } from "firebase/firestore"
-import ActivityIndicator from "../components/ActivityIndicator";
-import { db } from "../services/firebase";
-import { Container } from "../styles/pages/styled.home"
-import { Post } from "../components/Post"
-import { Profile } from "../components/Profile"
-import useAuth from "../hook/useAuth"
-import { NewPost } from "../components/NewPost"
-import { UserProps } from "../context/AuthContext";
+import ActivityIndicator from "../../components/ActivityIndicator/ActivityIndicator";
+import { db } from "../../services/firebase";
+import { Container } from "./styles"
+import { Post } from "../../components/Post"
+import { Profile } from "../../components/Profile"
+import useAuth from "../../hook/useAuth"
+import { NewPost } from "../../components/NewPost"
+import { UserProps } from "../../context/AuthContext";
 
 export interface PostProps {
     content: string

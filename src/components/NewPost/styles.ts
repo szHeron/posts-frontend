@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import * as Dialog from "@radix-ui/react-dialog"
+import { Button } from "../../styles/Button";
 
 export const NewPostTrigger = styled(Dialog.Trigger)`
     display: flex;
@@ -33,11 +34,12 @@ export const PostContent = styled(Dialog.Content)`
     background-color: ${({theme})=>theme.colors.background};
     color: white;
     width: 60vw;
-    height: 70vh;
+    height: 80vh;
     padding: 20px;
-    top: 15%;
+    top: 5%;
     left: 20%;
-
+    border-radius: 26px;
+    
     form {
         display: flex;
         flex-direction: column;
@@ -46,37 +48,6 @@ export const PostContent = styled(Dialog.Content)`
             color: #FF9494;
             font-weight: 300;
         }
-    }
-`
-
-export const ContentInput = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 40vw;
-    color: white;
-    padding: 10px;
-    margin-top: 15px;
-    margin-bottom: 15px;
-    background-color: transparent;
-    border: 1px solid ${({theme})=>theme.colors.activity};
-    border-radius: 12px;
-    transition: all;
-    cursor: pointer;
-
-    :hover {
-        svg {
-            height: 68px;
-            width: 68px;
-        }
-    }
-
-    p    {
-        width: 40%;
-        text-align: center;
-        color: gray;
-        font-size: small;
-        font-weight: 200;
     }
 `
 
@@ -110,4 +81,12 @@ export const CloseModal = styled(Dialog.Close)`
     cursor: pointer;
     background-color: transparent;
     border: none;
+`
+
+export const FinishedButton = styled(Button)`
+    background-color: #228B22;
+
+    :hover {
+        background-color: #2aae2a;
+    }
 `

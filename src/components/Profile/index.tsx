@@ -1,8 +1,8 @@
 import Avatar from "react-nice-avatar"
 import { Link } from "react-router-dom";
-import { UserProps } from "../context/AuthContext";
-import { ProfileContainer } from "../styles/components/styled.profile";
-import useAuth from "../hook/useAuth";
+import { UserProps } from "../../context/AuthContext";
+import { ProfileContainer } from "./styles";
+import useAuth from "../../hook/useAuth";
 
 interface ProfileProps {
     user: UserProps | null

@@ -1,6 +1,6 @@
 import Avatar from "react-nice-avatar"
-import { UserProps } from "../context/AuthContext";
-import { AuthorContainer } from "../styles/components/styled.author";
+import { UserProps } from "../../context/AuthContext";
+import { AuthorContainer } from "./styles";
 
 interface AuthorProps{
     author: UserProps
