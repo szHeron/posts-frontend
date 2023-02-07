@@ -55,7 +55,13 @@ export default function Home(){
                         </>
                     )          
                 }
-                
+                {
+                    posts.map((post, index)=>{
+                        return (
+                            <Post key={index} description={post.description} content={post.content} author={post.author}/>
+                        )
+                    })
+                }
             </Container>
         )
     }

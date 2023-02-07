@@ -1,21 +1,22 @@
 import { FormEvent, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
-import Avatar, { genConfig } from "react-nice-avatar"
+import Dropzone from "react-dropzone"
 import useAuth from "../hook/useAuth"
 import AsideImage from "../assets/post-online.svg"
 import { Container, Form, SubTitle, Title, Main, Aside, ControledInput, AvatarContent } from "../styles/pages/styled.login_register"
 import { Input } from "../styles/Input"
-import { Button, ButtonOutline } from "../styles/Button"
+import { Button } from "../styles/Button"
+import { Avatar } from "../components/Avatar"
 
 interface UserData {
     name: string;
     email: string;
     password: string;
-    avatar: object;
+    avatar: Blob | string;
 }
 
 export default function Register(){
-    const [newUser, setNewUser] = useState<UserData>({name: "", email: "", password: "", avatar: genConfig()})
+    const [newUser, setNewUser] = useState<UserData>({name: "", email: "", password: "", avatar: ""})
     const [error, setError] = useState({errorInName:"", errorInEmail: "", errorInPassword: "", errorInResponse: ""})
     const { signUpWithEmailAndPasswordFirebase } = useAuth()
     const navigate = useNavigate()
@@ -72,12 +73,17 @@ export default function Register(){
                         {error.errorInResponse&&<span>{error.errorInResponse}</span>}
                     </ControledInput>
                     <label>Seu avatar</label>
-                    <AvatarContent>
-                        <Avatar style={{width: "8rem", height: "8rem" }} {...newUser.avatar} />
-                        <ButtonOutline type="button" onClick={()=>setNewUser({...newUser, avatar: genConfig()})}>
-                            Atualize seu avatar
-                        </ButtonOutline>
-                    </AvatarContent>
+                    <Dropzone onDrop={acceptedFiles => {
+                        setNewUser({...newUser, avatar: acceptedFiles[0]})
+                    }}>
+                        {({getRootProps, getInputProps}) => (
+                            <AvatarContent {...getRootProps()}>
+                                <input {...getInputProps()} />
+                                <Avatar url={newUser.avatar instanceof Blob?URL.createObjectURL(newUser.avatar):""}/>
+                                <svg fill="#000" clipRule="evenodd" fillRule="evenodd" strokeLinejoin="round" strokeMiterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m4.481 15.659c-1.334 3.916-1.48 4.232-1.48 4.587 0 .528.46.749.749.749.352 0 .668-.137 4.574-1.492zm1.06-1.061 3.846 3.846 11.321-11.311c.195-.195.293-.45.293-.707 0-.255-.098-.51-.293-.706-.692-.691-1.742-1.74-2.435-2.432-.195-.195-.451-.293-.707-.293-.254 0-.51.098-.706.293z" fillRule="nonzero"/></svg>
+                            </AvatarContent>
+                        )}
+                    </Dropzone>
                     <Button type="submit">
                         CADASTRAR
                     </Button>

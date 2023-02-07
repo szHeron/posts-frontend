@@ -35,9 +35,10 @@ export function NewPost(props: NewPostProps){
             if(postContent.content){
                 const formData = new FormData();
                 const cloudName = import.meta.env.VITE_CLOUDNAME
+                const preset = import.meta.env.VITE_PRESET_POST
 
                 formData.append("file", postContent.content);
-                formData.append("upload_preset", "unov3ll3");
+                formData.append("upload_preset", preset);
                 await axios.post(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, formData).then((response)=>{
                     image_url = response.data.secure_url
                 })

@@ -56,9 +56,23 @@ export const ControledInput = styled.div`
 export const AvatarContent = styled.div`
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    width: 100%;
+    cursor: pointer;
+    
+    img {
+        height: 96px;
+        width: 96px;
+    }
+
+    svg{
+        position: absolute;
+        bottom: 27%;
+        right: 32%;
+        width: 24px;
+        height: 24px;
+        background-color: #fff;
+        padding: 4px;
+        border-radius: 50%;
+    }
 `
 
 export const Form = styled.form`

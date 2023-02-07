@@ -1,5 +1,6 @@
 import { createContext, ReactNode, useState, useEffect } from "react";
-import { signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, GoogleAuthProvider } from "firebase/auth";
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from "firebase/auth";
+import axios from "axios";
 import { db } from "../services/firebase";
 import { auth } from "../services/firebase";
 import { setDoc, doc, getDoc } from "firebase/firestore";
@@ -7,14 +8,14 @@ import { setDoc, doc, getDoc } from "firebase/firestore";
 export type UserProps = {
   id: string,
   name: string,
-  avatar: object
+  avatar: string
 }
   
 type AuthContextType = {
   user: UserProps | undefined,
   signOutAccount: () => Promise<void>,
   signInWithEmailAndPasswordFirebase: (email: string, password: string) => Promise<void>
-  signUpWithEmailAndPasswordFirebase: (email: string, password: string, name: string, avatar: object) => Promise<void>
+  signUpWithEmailAndPasswordFirebase: (email: string, password: string, name: string, avatar: string | Blob) => Promise<void>
 }
 
 type AuthContextProviderProps = {
@@ -71,11 +72,10 @@ export default function AuthContextProvider(props: AuthContextProviderProps){
     }
   }
 
-  async function signUpWithEmailAndPasswordFirebase(email: string, password: string, name: string, avatar: object){
+  async function signUpWithEmailAndPasswordFirebase(email: string, password: string, name: string, avatar: Blob | string){
     try{
       const response = await createUserWithEmailAndPassword(auth, email, password)
-      setUser({id: response.user.uid, name: name, avatar: avatar})
-      registerNewUser({id: response.user.uid, name: name, avatar: avatar})
+      registerNewUser(response.user.uid, name, avatar)
     }catch(e){
       console.log(e)
       throw new Error("Erro ao cadastrar usuario");
@@ -97,10 +97,25 @@ export default function AuthContextProvider(props: AuthContextProviderProps){
     }
   }
 
-  async function registerNewUser(user: UserProps){
+  async function registerNewUser(id: string, name: string, avatar: Blob | string){
     try{
-      const userRef = await setDoc(doc(db, "users", user.id), user)
+      let image_url = ""
+      if(avatar instanceof Blob){
+        const formData = new FormData()
+        const cloudName = import.meta.env.VITE_CLOUDNAME
+        const preset = import.meta.env.VITE_PRESET_AVATAR
+        
+        formData.append("file", avatar);
+        formData.append("upload_preset", preset);
+
+        await axios.post(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, formData).then((response)=>{
+          image_url = response.data.secure_url
+        })
+      }
+      await setDoc(doc(db, "users", id), {id: id, name: name, avatar: image_url})
+      setUser({id, name, avatar: image_url})
     }catch(e){
+      console.log(e)
       throw new Error("Erro ao salvar usuario");
     }
   }
