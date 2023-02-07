@@ -4,7 +4,7 @@ import { collection, addDoc } from "firebase/firestore";
 import { db } from "../../services/firebase";
 import { NewPostTrigger, PostContent, CloseModal, Description, FinishedButton } from "./styles"
 import { Button } from "../../styles/Button"
-import { UploadFile } from "../UploadFile/UploadFile";
+import { UploadFile } from "../UploadFile";
 import useAuth from "../../hook/useAuth";
 import { UserProps } from "../../context/AuthContext";
 import axios from "axios";

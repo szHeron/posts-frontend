@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { query, collection, getDocs, DocumentData } from "firebase/firestore"
+import { query, collection, getDocs } from "firebase/firestore"
 import ActivityIndicator from "../../components/ActivityIndicator/ActivityIndicator";
 import { db } from "../../services/firebase";
 import { Container } from "./styles"
@@ -55,11 +55,7 @@ export default function Home(){
                         </>
                     )          
                 }
-                {posts.map((post, index)=>{
-                    return (
-                        <Post key={index} description={post.description} content={post.content} author={post.author}/>
-                    )
-                })}
+                
             </Container>
         )
     }

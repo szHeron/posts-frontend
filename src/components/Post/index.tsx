@@ -3,7 +3,6 @@ import { Author } from "../Author";
 import { PostProps } from "../../pages/Home";
 
 export function Post({description, content, author}: PostProps){
-    console.log(description, content, author)
     return(
         <PostContainer>
             <Author author={author}/>
