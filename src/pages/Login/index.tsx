@@ -1,10 +1,11 @@
 import { FormEvent, useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
-import useAuth from "../hook/useAuth"
-import AsideImage from "../assets/post-online.svg"
-import { Container, Form, SubTitle, Title, Main, Aside, ControledInput } from "../styles/pages/styled.login_register"
-import { Input } from "../styles/Input"
-import { Button } from "../styles/Button"
+import useAuth from "../../hook/useAuth"
+import AsideImage from "../../assets/post-online.svg"
+import { Container, Form, SubTitle, Title, Main, Aside, ControledInput } from "./styles"
+import { Input } from "../../styles/Input"
+import { Button } from "../../styles/Button"
+import { Redirect } from "../Register/styles"
 
 export default function Login(){
     const [email, setEmail] = useState("")
@@ -53,19 +54,19 @@ export default function Login(){
                 <Form onSubmit={handleLogin}>
                     <ControledInput>
                         <label>Email</label>
-                        <Input onChange={e => setEmail(e.target.value)} placeholder="Example.email.com"/>
+                        <Input onChange={e => setEmail(e.target.value)} placeholder="Seu email"/>
                     </ControledInput>
                     <ControledInput>
                         <label>Senha</label>
-                        <Input onChange={e => setPassword(e.target.value)} placeholder="Senha" type="password"/>
+                        <Input onChange={e => setPassword(e.target.value)} placeholder="Sua senha" type="password"/>
                         {error&&<span>{error}</span>}
                     </ControledInput>
                     <Button type="submit">
                         ENTRAR
                     </Button>
-                    <SubTitle>
+                    <Redirect>
                         Não possui uma conta? <Link to="/cadastro"> Clique aqui e crie ela!</Link>
-                    </SubTitle>
+                    </Redirect>
                 </Form>
             </Main>
         </Container>

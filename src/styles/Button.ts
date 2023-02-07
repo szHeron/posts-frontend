@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export const Button = styled.button`
-    margin-top: 30px;
-    margin-bottom: 40px;
+    margin-top: 20px;
+    margin-bottom: 20px;
     padding: 18px;
     width: 40%;
     color: white;
@@ -19,8 +19,8 @@ export const Button = styled.button`
 `
 
 export const ButtonOutline = styled.button`
-    margin-top: 30px;
-    margin-bottom: 40px;
+    margin-top: 20px;
+    margin-bottom: 20px;
     padding: 18px;
     width: 40%;
     color: white;

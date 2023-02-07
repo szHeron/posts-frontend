@@ -11,6 +11,15 @@ export const Container = styled.div`
     color: white;
 `
 
+export const AvatarAndPassword = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    width: 100%;
+`
+
 export const Main = styled.main`
     display: flex;
     flex-direction: column;
@@ -51,12 +60,20 @@ export const ControledInput = styled.div`
         color: #FF9494;
         font-weight: 300;
     }
+
+    @media (min-width: 768px) {
+        margin-bottom: 10px;
+    }
+`
+
+export const Redirect = styled.p`
+    margin: 4px;
 `
 
 export const AvatarContent = styled.div`
-    display: flex;
-    flex-direction: row;
+    position: relative;
     cursor: pointer;
+    margin-left: 50px;
     
     img {
         height: 96px;
@@ -65,8 +82,8 @@ export const AvatarContent = styled.div`
 
     svg{
         position: absolute;
-        bottom: 27%;
-        right: 32%;
+        bottom: 0;
+        right: 0;
         width: 24px;
         height: 24px;
         background-color: #fff;
@@ -80,8 +97,7 @@ export const Form = styled.form`
     flex-direction: column;
     align-items: flex-start;
     margin-top: 20px;
-    margin-bottom: 20px;
-    width: 50%;
+    width: 60%;
 
     label {
         margin-bottom: 5px;

@@ -20,7 +20,7 @@ export function Profile({user}: ProfileProps){
         return (
             <ProfileContainer>
                 <Link to="/login" style={{textDecoration: "none", color: "#fff"}}>
-                    Convidado
+                    Entre aqui
                 </Link>
             </ProfileContainer>
         )

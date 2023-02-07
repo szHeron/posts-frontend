@@ -25,7 +25,7 @@ type AuthContextProviderProps = {
 export const AuthContext = createContext({} as AuthContextType);
 
 export default function AuthContextProvider(props: AuthContextProviderProps){
-    const [user, setUser] = useState<UserProps>();
+  const [user, setUser] = useState<UserProps>();
 
   useEffect(()=>{
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
