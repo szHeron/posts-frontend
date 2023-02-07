@@ -16,7 +16,11 @@ export interface PostData {
     author: UserProps | undefined
 }
 
-export function NewPost(){
+interface NewPostProps {
+    getPosts: () => void
+}
+
+export function NewPost(props: NewPostProps){
     const { user } = useAuth();
     const [open, setOpen] = useState(false)
     const [postContent, setPostContent] = useState<PostData>({description: "", content: null, author: user})
@@ -61,7 +65,7 @@ export function NewPost(){
                     {message.success?(
                         <>
                             <Dialog.Title>{message.success}</Dialog.Title>
-                            <FinishedButton onClick={()=>{setOpen(false);setMessage({error:"", success:""})}}>
+                            <FinishedButton onClick={()=>{props.getPosts();setOpen(false);setMessage({error:"", success:""})}}>
                                 CONCLUIDO
                             </FinishedButton>
                         </>

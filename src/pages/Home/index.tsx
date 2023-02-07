@@ -20,18 +20,19 @@ export default function Home(){
     const [ posts, setPosts ] = useState<DocumentData[]>([]);
     const [ loading, setLoading ] = useState(true)
 
+    async function getPosts() {
+        const q = query(collection(db, "posts"));
+        const querySnapshot = await getDocs(q);
+        let tempPosts: Array<DocumentData> = []
+
+        querySnapshot.forEach((doc) => {
+            tempPosts.push(doc.data())
+        })
+
+        setPosts(tempPosts)
+    }
+
     useEffect(()=>{
-        async function getPosts() {
-            const q = query(collection(db, "posts"));
-            const querySnapshot = await getDocs(q);
-            let tempPosts: Array<DocumentData> = []
-
-            querySnapshot.forEach((doc) => {
-                tempPosts.push(doc.data())
-            })
-
-            setPosts(tempPosts)
-        }
         setLoading(true)
         getPosts()
         setLoading(false)
@@ -49,7 +50,7 @@ export default function Home(){
                         <Profile user={null}/>
                     ):(
                         <>
-                            <NewPost/>
+                            <NewPost getPosts={getPosts}/>
                             <Profile user={user}/>
                         </>
                     )          
