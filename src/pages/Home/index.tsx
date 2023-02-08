@@ -76,7 +76,7 @@ export default function Home(){
                     posts.map((post, index)=>{
                         const liked = post.likes.includes(user.id)
                         return (
-                            <Post key={index} handleButtonLikeClicked={handleButtonLikeClicked} liked={liked} post={post}/>
+                            <Post key={index} isConected={!user.id?false:true} handleButtonLikeClicked={handleButtonLikeClicked} liked={liked} post={post}/>
                         )
                     })
                 }

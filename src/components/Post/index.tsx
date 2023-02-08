@@ -6,6 +6,7 @@ interface PostProps {
     handleButtonLikeClicked: (postId: string, liked: boolean) => void
     liked: boolean
     post: PostData
+    isConected: boolean
 }
 
 export function Post(props: PostProps){
@@ -17,7 +18,8 @@ export function Post(props: PostProps){
                 <AuthorDescription>{props.post.author.name}</AuthorDescription><span>{props.post.description}</span>
             </Description>
             <Actions>
-                <Action onClick={()=>props.handleButtonLikeClicked(props.post.postId, props.liked)}>
+                {
+                    props.isConected&&<Action onClick={()=>props.handleButtonLikeClicked(props.post.postId, props.liked)}>
                     {
                         props.liked?
                         (
@@ -29,7 +31,8 @@ export function Post(props: PostProps){
                         )
                     }
                     Curtir
-                </Action>
+                    </Action>
+                }
                 <p>{props.post.likes.length} Curtidas</p>
             </Actions>
         </PostContainer>
