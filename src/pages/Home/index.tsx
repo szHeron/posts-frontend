@@ -61,7 +61,7 @@ export default function Home(){
         return (
             <Container>
                 {
-                    !user?(
+                    !user.id?(
                         <Profile user={null}/>
                     ):(
                         <>
