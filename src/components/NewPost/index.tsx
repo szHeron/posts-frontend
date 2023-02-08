@@ -1,29 +1,23 @@
 import { useState, FormEvent } from "react"
 import * as Dialog from "@radix-ui/react-dialog"
-import { collection, addDoc } from "firebase/firestore";
-import { db } from "../../services/firebase";
 import { NewPostTrigger, PostContent, CloseModal, Description, FinishedButton } from "./styles"
 import { Button } from "../../styles/Button"
 import { UploadFile } from "../UploadFile";
-import useAuth from "../../hook/useAuth";
-import { UserProps } from "../../context/AuthContext";
-import axios from "axios";
 import ActivityIndicator from "../ActivityIndicator/ActivityIndicator";
+import { createNewPost } from "../../utils/createNewPost";
+import useAuth from "../../hook/useAuth";
 
-export interface PostData {
-    description: string, 
-    content: any,
-    author: UserProps | undefined
+export interface NewPostData {
+    description: string
+    content: File | null
+    likes: Array<string>
+    createdAt: Date
 }
 
-interface NewPostProps {
-    getPosts: () => void
-}
-
-export function NewPost(props: NewPostProps){
+export function NewPost({getNewPosts}: {getNewPosts: () => void}){
     const { user } = useAuth();
     const [open, setOpen] = useState(false)
-    const [postContent, setPostContent] = useState<PostData>({description: "", content: null, author: user})
+    const [postContent, setPostContent] = useState<NewPostData>({description: "", content: null, likes: [], createdAt: new Date()})
     const [message, setMessage] = useState({error: "", success: ""})
     const [loading, setLoading] = useState(false)
 
@@ -31,21 +25,9 @@ export function NewPost(props: NewPostProps){
         e.preventDefault()
         if(postContent.description){
             setLoading(true)
-            let image_url = ""
-            if(postContent.content){
-                const formData = new FormData();
-                const cloudName = import.meta.env.VITE_CLOUDNAME
-                const preset = import.meta.env.VITE_PRESET_POST
-
-                formData.append("file", postContent.content);
-                formData.append("upload_preset", preset);
-                await axios.post(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, formData).then((response)=>{
-                    image_url = response.data.secure_url
-                })
-            }
-            await addDoc(collection(db, "posts"), {...postContent, content: image_url})
+            await createNewPost(postContent, user)
             setMessage({...message, success: "Post realizado com sucesso"})
-            setPostContent({description: "", content: null, author: user})
+            setPostContent({...postContent, description: "", content: null, createdAt: new Date()})
             setLoading(false)
         }else{
             setMessage({...message, error: "Insira a descrição do post!"})
@@ -67,7 +49,7 @@ export function NewPost(props: NewPostProps){
                     {message.success?(
                         <>
                             <Dialog.Title>{message.success}</Dialog.Title>
-                            <FinishedButton onClick={()=>{props.getPosts();setOpen(false);setMessage({error:"", success:""})}}>
+                            <FinishedButton onClick={()=>{getNewPosts();setOpen(false);setMessage({error:"", success:""})}}>
                                 CONCLUIDO
                             </FinishedButton>
                         </>
@@ -90,7 +72,7 @@ export function NewPost(props: NewPostProps){
                                     Criar novo post
                                 </Button>
                             </form>
-                            <CloseModal>
+                            <CloseModal onClick={()=>setPostContent({...postContent, description: "", content: null, createdAt: new Date()})}>
                                 <svg fill="#fff" width={32} height={32} clipRule="evenodd" fillRule="evenodd" strokeLinejoin="round" strokeMiterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m12 10.93 5.719-5.72c.146-.146.339-.219.531-.219.404 0 .75.324.75.749 0 .193-.073.385-.219.532l-5.72 5.719 5.719 5.719c.147.147.22.339.22.531 0 .427-.349.75-.75.75-.192 0-.385-.073-.531-.219l-5.719-5.719-5.719 5.719c-.146.146-.339.219-.531.219-.401 0-.75-.323-.75-.75 0-.192.073-.384.22-.531l5.719-5.719-5.72-5.719c-.146-.147-.219-.339-.219-.532 0-.425.346-.749.75-.749.192 0 .385.073.531.219z"/></svg>
                             </CloseModal>
                         </>

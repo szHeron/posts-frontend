@@ -4,6 +4,7 @@ import AuthContextProvider from "./context/AuthContext";
 import { Router } from "./Router"
 import { GlobalStyle } from "./styles/GlobalStyle";
 import { theme } from "./styles/theme"
+import "./lib/dayjs"
 
 function App() {
   return (

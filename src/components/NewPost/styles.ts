@@ -28,13 +28,11 @@ export const NewPostTrigger = styled(Dialog.Trigger)`
 export const PostContent = styled(Dialog.Content)`
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     position: absolute;
     background-color: ${({theme})=>theme.colors.background};
     color: white;
     width: 60vw;
-    height: 80vh;
     padding: 20px;
     top: 5%;
     left: 20%;
