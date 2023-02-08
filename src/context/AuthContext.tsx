@@ -12,7 +12,7 @@ export type UserProps = {
 }
   
 type AuthContextType = {
-  user: UserProps | undefined,
+  user: UserProps,
   signOutAccount: () => Promise<void>,
   signInWithEmailAndPasswordFirebase: (email: string, password: string) => Promise<void>
   signUpWithEmailAndPasswordFirebase: (email: string, password: string, name: string, avatar: string | Blob) => Promise<void>
@@ -25,7 +25,7 @@ type AuthContextProviderProps = {
 export const AuthContext = createContext({} as AuthContextType);
 
 export default function AuthContextProvider(props: AuthContextProviderProps){
-  const [user, setUser] = useState<UserProps>();
+  const [user, setUser] = useState<UserProps>({id: "", name: "", avatar: ""});
 
   useEffect(()=>{
     const unsubscribe = auth.onAuthStateChanged(async (user) => {

@@ -8,6 +8,7 @@ import useAuth from "../../hook/useAuth"
 import { NewPost } from "../../components/NewPost"
 import { UserProps } from "../../context/AuthContext";
 import { updatePost } from "../../utils/updatePost";
+import { Timestamp } from "firebase/firestore";
 
 export interface PostData {
     content: string
@@ -15,6 +16,7 @@ export interface PostData {
     author: UserProps
     likes: Array<string>
     postId: string
+    createdAt: Timestamp
 }
 
 export default function Home(){
@@ -22,14 +24,14 @@ export default function Home(){
     const [ posts, setPosts ] = useState<PostData[]>([]);
     const [ loading, setLoading ] = useState(true)
 
-    useEffect(()=>{
-        async function setNewPosts(){
-            setPosts(await getPosts())
-        }
+    async function getNewPosts(){
+        setPosts(await getPosts())
+    }
 
+    useEffect(()=>{
         if(!posts.length){
             setLoading(true)
-            setNewPosts()
+            getNewPosts()
             setLoading(false)
         }
     }, [user])
@@ -63,16 +65,18 @@ export default function Home(){
                         <Profile user={null}/>
                     ):(
                         <>
-                            <NewPost/>
-                            <Profile user={user}/>
+                            <Header>
+                                <Profile user={user}/>
+                            </Header>
+                            <NewPost getNewPosts={getNewPosts}/>
                         </>
-                    )          
+                    )                         
                 }
                 {
                     posts.map((post, index)=>{
                         const liked = post.likes.includes(user.id)
                         return (
-                            <Post key={index} handleButtonLikeClicked={handleButtonLikeClicked} postId={post.postId} liked={liked} likes={post.likes} description={post.description} content={post.content} author={post.author}/>
+                            <Post key={index} handleButtonLikeClicked={handleButtonLikeClicked} liked={liked} post={post}/>
                         )
                     })
                 }

@@ -48,7 +48,7 @@ export const Title = styled.h1`
 export const SubTitle = styled.p`
     color: gray;
     font-size: small;
-    font-weight: 200;
+    font-weight: 300;
     margin: 0px;
 `
 
@@ -68,6 +68,13 @@ export const ControledInput = styled.div`
 
 export const Redirect = styled.p`
     margin: 4px;
+    font-size: small;
+    align-self: center;
+
+    a {
+        text-decoration: none;
+        color: ${({theme})=>theme.colors.hover};
+    }
 `
 
 export const AvatarContent = styled.div`
@@ -82,11 +89,11 @@ export const AvatarContent = styled.div`
 
     svg{
         position: absolute;
-        bottom: 0;
-        right: 0;
+        bottom: 8px;
+        right: 8px;
         width: 24px;
         height: 24px;
-        background-color: #fff;
+        background-color: ${({theme})=>theme.colors.hover};
         padding: 4px;
         border-radius: 50%;
     }

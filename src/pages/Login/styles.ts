@@ -39,7 +39,7 @@ export const Title = styled.h1`
 export const SubTitle = styled.p`
     color: gray;
     font-size: small;
-    font-weight: 200;
+    font-weight: 300;
     margin: 0px;
 `
 

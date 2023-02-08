@@ -14,8 +14,10 @@ export const Container = styled.div`
 export const Header = styled.div`
     display: flex;
     flex-direction: row;
+    position: fixed;
     justify-content: flex-end;
     align-items: center;
-    max-height: 8vh;
+    height: 10vh;
     width: 100%;
+    background-color: ${({theme})=>theme.colors.postBackground};
 `

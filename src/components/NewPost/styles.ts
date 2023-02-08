@@ -9,7 +9,7 @@ export const NewPostTrigger = styled(Dialog.Trigger)`
     width: 50vw;
     color: white;
     padding: 10px;
-    margin-top: 15px;
+    margin-top: 11vh;
     margin-bottom: 15px;
     border: 1px solid ${({theme})=>theme.colors.activity};
     border-radius: 12px;

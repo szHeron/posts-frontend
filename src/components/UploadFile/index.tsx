@@ -1,11 +1,11 @@
 import { Dispatch, SetStateAction } from "react"
 import Dropzone from "react-dropzone"
 import { ContentInput, Preview } from "./styles"
-import { PostData } from "../NewPost"
+import { NewPostData } from "../NewPost"
 
 interface PostProps {
-    postContent: PostData
-    setPostContent: Dispatch<SetStateAction<PostData>>
+    postContent: NewPostData
+    setPostContent: Dispatch<SetStateAction<NewPostData>>
 }
 
 export function UploadFile(props: PostProps){

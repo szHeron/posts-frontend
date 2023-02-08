@@ -16,20 +16,12 @@ export default function Login(){
     const { signInWithEmailAndPasswordFirebase, user } = useAuth();
     const navigate = useNavigate()
 
-    useEffect(()=>{
-        function userIsConected(){
-            if(user) {
-                navigate("/")
-            }
-        }
-        userIsConected()
-    },[user])
-
     async function handleLogin(e: FormEvent){
         e.preventDefault()
         if(email && password){
+            setLoading(true)
             try {
-                const response = await signInWithEmailAndPasswordFirebase(email, password)
+                await signInWithEmailAndPasswordFirebase(email, password)
                 navigate("/")
             }catch (err: unknown) {
                 if (err instanceof Error) {
@@ -39,6 +31,7 @@ export default function Login(){
         }else{
             setError("Insira o email e senha!")
         }
+        setLoading(false)
     }
 
     return(
