@@ -34,7 +34,7 @@ export const PostContent = styled(Dialog.Content)`
     color: white;
     width: 60vw;
     padding: 20px;
-    top: 5%;
+    top: 1%;
     left: 20%;
     border-radius: 26px;
     

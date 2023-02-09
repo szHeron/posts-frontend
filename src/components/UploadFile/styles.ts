@@ -33,6 +33,11 @@ export const ContentInput = styled.div`
 
 export const Preview = styled.img`
     align-self: center;
-    width: 16rem;
+    width: auto;
     height: 16rem;
+
+    @media (min-width: 768px) and (max-width: 1366px){
+        width: auto;
+        height: 10rem;
+    }
 `
