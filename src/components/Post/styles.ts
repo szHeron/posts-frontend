@@ -13,6 +13,7 @@ export const PostContainer = styled.div`
 
     @media (max-width: 426px) {
         width: 90vw;
+        margin-top: 12px;
     }
 `
 

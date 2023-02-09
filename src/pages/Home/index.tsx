@@ -61,16 +61,12 @@ export default function Home(){
         return (
             <Container>
                 {
-                    !user.id?(
-                        <Profile user={null}/>
-                    ):(
-                        <>
-                            <Header>
-                                <Profile user={user}/>
-                            </Header>
-                            <NewPost getNewPosts={getNewPosts}/>
-                        </>
-                    )                         
+                    <>
+                        <Header>
+                            <Profile user={!user.id?null:user}/>
+                        </Header>
+                        <NewPost getNewPosts={getNewPosts}/>
+                    </>                     
                 }
                 {
                     posts.map((post, index)=>{
