@@ -41,12 +41,6 @@ export const Description = styled.div`
     }
 `
 
-export const AuthorDescription = styled.p`
-    align-self: flex-start;
-    font-weight: 600;
-    margin: 0 4px 0 0;
-`
-
 export const Actions = styled.div`
     display: flex;
     flex-direction: row;

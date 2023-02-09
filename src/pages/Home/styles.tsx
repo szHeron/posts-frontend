@@ -11,6 +11,10 @@ export const Container = styled.div`
     min-height: 100vh;
 `
 
+export const PostsArea = styled.div`
+    margin: 11vh 0 2vh 0;
+`
+
 export const Header = styled.div`
     display: flex;
     flex-direction: row;

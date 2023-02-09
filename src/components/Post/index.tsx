@@ -1,4 +1,4 @@
-import { PostContainer, PostImage, Description, AuthorDescription, Actions, Action } from "./styles";
+import { PostContainer, PostImage, Description, Actions, Action } from "./styles";
 import { PostHeader } from "../PostHeader";
 import { PostData } from "../../pages/Home";
 
@@ -15,7 +15,7 @@ export function Post(props: PostProps){
             <PostHeader createdAt={props.post.createdAt} author={props.post.author}/>
             {props.post.content&&<PostImage alt="Imagem sobre o post" src={props.post.content}/>}
             <Description>
-                <AuthorDescription>{props.post.author.name}</AuthorDescription><span>{props.post.description}</span>
+                <span>{props.post.description}</span>
             </Description>
             <Actions>
                 {

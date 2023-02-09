@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { getPosts } from "../../utils/getPosts";
 import ActivityIndicator from "../../components/ActivityIndicator/ActivityIndicator";
-import { Container, Header } from "./styles"
+import { Container, Header, PostsArea } from "./styles"
 import { Post } from "../../components/Post"
 import { Profile } from "../../components/Profile"
 import useAuth from "../../hook/useAuth"
@@ -60,22 +60,20 @@ export default function Home(){
     }else{
         return (
             <Container>
-                {
-                    <>
-                        <Header>
-                            <Profile user={!user.id?null:user}/>
-                        </Header>
-                        <NewPost getNewPosts={getNewPosts}/>
-                    </>                     
-                }
-                {
-                    posts.map((post, index)=>{
-                        const liked = post.likes.includes(user.id)
-                        return (
-                            <Post key={index} isConected={!user.id?false:true} handleButtonLikeClicked={handleButtonLikeClicked} liked={liked} post={post}/>
-                        )
-                    })
-                }
+                <Header>
+                    <Profile user={!user.id?null:user}/>
+                </Header>
+                <PostsArea>
+                    {user.id&&<NewPost getNewPosts={getNewPosts}/>}                  
+                    {
+                        posts.map((post, index)=>{
+                            const liked = post.likes.includes(user.id)
+                            return (
+                                <Post key={index} isConected={!user.id?false:true} handleButtonLikeClicked={handleButtonLikeClicked} liked={liked} post={post}/>
+                            )
+                        })
+                    }
+                </PostsArea>
             </Container>
         )
     }
