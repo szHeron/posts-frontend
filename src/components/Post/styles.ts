@@ -18,17 +18,11 @@ export const PostContainer = styled.div`
 
 export const PostImage = styled.img`
     object-fit: cover;
-    max-width: 100%;
-    height: auto;
+    width: auto;
+    height: 50vh;
 
-    @media (min-width: 768px) {
-        width: 60%;
-        height: 60%;
-    }
-
-    @media (min-width: 1024px) {
-        width: 40%;
-        height: 40%;
+    @media (max-width: 426px) {
+        height: 40vw;
     }
 `
 
