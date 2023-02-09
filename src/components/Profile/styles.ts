@@ -9,6 +9,10 @@ export const ProfileContainer = styled.div`
     padding: 8px;
     border-radius: 8px;
 
+    @media (max-width: 426px) {
+        left: 5%;
+    }
+
     p{
         margin: 0 0 4px 0;
     }

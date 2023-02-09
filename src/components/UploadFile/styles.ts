@@ -29,6 +29,11 @@ export const ContentInput = styled.div`
         font-size: small;
         font-weight: 200;
     }
+
+    @media (max-width: 426px) {
+        padding: 8px 0 0 0;
+        width: 100%;
+    }
 `
 
 export const Preview = styled.img`
@@ -39,5 +44,10 @@ export const Preview = styled.img`
     @media (min-width: 768px) and (max-width: 1366px){
         width: auto;
         height: 10rem;
+    }
+
+    @media (max-width: 426px) {
+        width: auto;
+        height: 9rem;
     }
 `

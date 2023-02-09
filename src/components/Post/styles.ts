@@ -10,6 +10,10 @@ export const PostContainer = styled.div`
     margin-top: 20px;
     padding: 12px;
     border-radius: 20px;
+
+    @media (max-width: 426px) {
+        width: 90vw;
+    }
 `
 
 export const PostImage = styled.img`

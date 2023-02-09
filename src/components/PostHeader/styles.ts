@@ -24,4 +24,8 @@ export const HeaderPostContainer = styled.div`
         font-weight: 400;
         color: ${({theme})=>theme.colors.darkGray};
     }
+
+    @media (max-width: 426px) {
+        width: 90vw;
+    }
 `

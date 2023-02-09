@@ -47,6 +47,16 @@ export const PostContent = styled(Dialog.Content)`
             font-weight: 300;
         }
     }
+
+    @media (max-width: 426px) {
+        padding: 12px;
+        width: 90vw;
+        left: 2%;
+
+        form {
+            width: 100%;
+        }
+    }
 `
 
 export const Description = styled.textarea`
@@ -79,6 +89,10 @@ export const CloseModal = styled(Dialog.Close)`
     cursor: pointer;
     background-color: transparent;
     border: none;
+
+    @media (max-width: 426px) {
+        left: 80%;
+    }
 `
 
 export const FinishedButton = styled(Button)`

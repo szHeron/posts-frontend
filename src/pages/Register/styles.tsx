@@ -27,6 +27,10 @@ export const Main = styled.main`
     align-items: center;
     height: 100%;
     width: 50%;
+
+    @media (max-width: 426px) {
+        width: 100%;
+    }
 `
 
 export const Aside = styled.aside`
@@ -37,6 +41,10 @@ export const Aside = styled.aside`
     background-color: #673AB7;
     height: 100%;
     width: 50%;
+
+    @media (max-width: 426px) {
+        display: none;
+    }
 `
 
 export const Title = styled.h1`
@@ -108,5 +116,9 @@ export const Form = styled.form`
 
     label {
         margin-bottom: 5px;
+    }
+
+    @media (max-width: 426px){
+        width: 70%;
     }
 `
