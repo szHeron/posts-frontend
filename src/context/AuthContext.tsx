@@ -4,6 +4,7 @@ import axios from "axios";
 import { db } from "../services/firebase";
 import { auth } from "../services/firebase";
 import { setDoc, doc, getDoc } from "firebase/firestore";
+import { VerifyErroCode } from "../utils/firebaseErrosLocalized";
 
 export type UserProps = {
   id: string,
@@ -51,9 +52,8 @@ export default function AuthContextProvider(props: AuthContextProviderProps){
   async function signOutAccount(){
     try{
       signOut(auth)
-    }catch(e){
-      console.log(e)
-      throw new Error("Erro ao sair da conta!");
+    }catch(error: any){
+      throw new Error(VerifyErroCode(error.code));
     }
   }
 
@@ -67,8 +67,8 @@ export default function AuthContextProvider(props: AuthContextProviderProps){
         const userData = await getUser(user.uid)
         setUser({id: user.uid, name: userData.name, avatar: userData.avatar})
       }
-    }catch(e){
-      throw new Error("Email ou senha errado!");
+    }catch(error: any){
+      throw new Error(VerifyErroCode(error.code));
     }
   }
 
@@ -76,9 +76,8 @@ export default function AuthContextProvider(props: AuthContextProviderProps){
     try{
       const response = await createUserWithEmailAndPassword(auth, email, password)
       registerNewUser(response.user.uid, name, avatar)
-    }catch(e){
-      console.log(e)
-      throw new Error("Erro ao cadastrar usuario");
+    }catch(error: any){
+      throw new Error(VerifyErroCode(error.code));
     }
   }  
 
@@ -92,8 +91,8 @@ export default function AuthContextProvider(props: AuthContextProviderProps){
       } else {
         throw new Error("Não foi possível encontrar o usuário");
       }
-    }catch(error){
-      throw new Error("Erro ao recuperar o usuário");
+    }catch(error: any){
+      throw new Error(VerifyErroCode(error.code));
     }
   }
 
@@ -114,9 +113,8 @@ export default function AuthContextProvider(props: AuthContextProviderProps){
       }
       await setDoc(doc(db, "users", id), {id: id, name: name, avatar: image_url})
       setUser({id, name, avatar: image_url})
-    }catch(e){
-      console.log(e)
-      throw new Error("Erro ao salvar usuario");
+    }catch(error: any){
+      throw new Error(VerifyErroCode(error.code));
     }
   }
 

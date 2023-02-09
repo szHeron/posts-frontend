@@ -23,10 +23,8 @@ export default function Login(){
             try {
                 await signInWithEmailAndPasswordFirebase(email, password)
                 navigate("/")
-            }catch (err: unknown) {
-                if (err instanceof Error) {
-                    setError(err.message)
-                };
+            }catch (err: any) {
+                setError(err.message)
             }
         }else{
             setError("Insira o email e senha!")

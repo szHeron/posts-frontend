@@ -32,11 +32,9 @@ export default function Register(){
             try{
                 await signUpWithEmailAndPasswordFirebase(newUser.email, newUser.password, newUser.name, newUser.avatar)
                 navigate("/")
-            }catch(e){
-                console.log("Erro ao cadastrar usuario, tente novamente mais tarde!", e)
-                setError({...error, errorInResponse: "Erro ao cadastrar usuario, tente novamente mais tarde!"})
+            }catch(e: any){
+                erros = {...erros, errorInResponse: e.message}
             }
-            setLoading(false)
         }else{
             if(!newUser.email)
                 erros = {...erros, errorInEmail: "Insira o email corretamente!"}
@@ -46,7 +44,8 @@ export default function Register(){
                 erros = {...erros, errorInPassword: "Senha não pode está vazia!"}
             if(newUser.password !== confirmPassword)
                 erros = {...erros, errorInPassword: "Senha não pode está vazia!"}
-        }   
+        }
+        setLoading(false)
         setError(erros)
     }
 
@@ -77,12 +76,11 @@ export default function Register(){
                         <label>Senha</label>
                         <Input maxLength={128} onChange={e => setNewUser({...newUser, password: e.target.value})} placeholder="Sua senha" type="password"/>
                         {error.errorInPassword&&<span>{error.errorInPassword}</span>}
-                        {error.errorInResponse&&<span>{error.errorInResponse}</span>}
                     </ControledInput>
                     <AvatarAndPassword>
                         <ControledInput>
                             <label>Confirme sua senha</label>
-                            <Input maxLength={128} onChange={e => setConfirmPassword(e.target.value)} placeholder="Confirme sua senha" type="password"/>
+                            <Input maxLength={128} onChange={e => setConfirmPassword(e.target.value)} placeholder="Sua senha" type="password"/>
                             {error.errorInPassword&&<span>{error.errorInPassword}</span>}
                             {error.errorInResponse&&<span>{error.errorInResponse}</span>}
                         </ControledInput>
