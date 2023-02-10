@@ -31,7 +31,7 @@ export default function Register(){
             setLoading(true)
             try{
                 await signUpWithEmailAndPasswordFirebase(newUser.email, newUser.password, newUser.name, newUser.avatar)
-                navigate("/posts")
+                navigate("/")
             }catch(e: any){
                 erros = {...erros, errorInResponse: e.message}
             }

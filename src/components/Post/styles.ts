@@ -8,11 +8,11 @@ export const PostContainer = styled.div`
     color: white;
     background-color: ${({theme})=>theme.colors.postBackground};
     margin-top: 20px;
-    padding: 12px;
-    border-radius: 20px;
+    padding: 24px;
+    border-radius: 12px;
 
     @media (max-width: 426px) {
-        width: 90vw;
+        width: 85vw;
         margin-top: 12px;
     }
 `
@@ -32,7 +32,7 @@ export const Description = styled.div`
     flex-direction: row;
     align-self: flex-start;
     justify-content: center;
-    margin-top: 8px;
+    margin-top: 2vh;
     font-weight: 400;
     font-size: medium;
 
@@ -45,17 +45,22 @@ export const Actions = styled.div`
     display: flex;
     flex-direction: row;
     align-self: flex-start;
-    justify-content: space-between;
+    justify-content: flex-start;
     width: 100%;
+    margin-top: 2vh;
 `
 
 export const Action = styled.button`
     display: flex;
-    flex-direction: column;
-    align-self: center;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 8px;
     border: none;
+    padding: 0;
     background-color: transparent;
     cursor: pointer;
     color: white;
+
+    font-size: large;
 `
