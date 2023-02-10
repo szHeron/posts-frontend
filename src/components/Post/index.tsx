@@ -12,7 +12,7 @@ interface PostProps {
 export function Post(props: PostProps){
     return(
         <PostContainer>
-            <PostHeader createdAt={props.post.createdAt} author={props.post.author} postId={props.post.postId} imageUrl={props.post.content}/>
+            <PostHeader createdAt={props.post.createdAt} author={props.post.author} postId={props.post.postId}/>
             {props.post.content&&<PostImage alt="Imagem sobre o post" src={props.post.content}/>}
             <Description>
                 <span>{props.post.description}</span>

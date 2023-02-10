@@ -22,7 +22,7 @@ export default function Login(){
             setLoading(true)
             try {
                 await signInWithEmailAndPasswordFirebase(email, password)
-                navigate("/")
+                navigate("/posts")
             }catch (err: any) {
                 setError(err.message)
             }

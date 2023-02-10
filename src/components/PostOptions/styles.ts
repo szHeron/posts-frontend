@@ -10,6 +10,11 @@ export const PostOptionsContent = styled(Popover.Content)`
     width: 10vw;
     border-radius: 12px;
     padding: 22px 10px 10px 10px;
+
+    @media (max-width: 426px) {
+        width: 40vw;
+    }
+
 `
 
 export const ClosePostOptions = styled(Popover.Close)`
@@ -43,5 +48,10 @@ export const Option = styled.button`
      
     svg{
         margin-right: 14px;
+    }
+
+    span {
+        font-weight: 300;
+        color: #22bb33;
     }
 `

@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react"
+import { Timestamp } from "firebase/firestore";
+import { useParams } from "react-router-dom";
 import { getPosts } from "../../utils/getPosts";
 import ActivityIndicator from "../../components/ActivityIndicator/ActivityIndicator";
 import { Container, Header, PostsArea } from "./styles"
@@ -8,7 +10,7 @@ import useAuth from "../../hook/useAuth"
 import { NewPost } from "../../components/NewPost"
 import { UserProps } from "../../context/AuthContext";
 import { updatePost } from "../../utils/updatePost";
-import { Timestamp } from "firebase/firestore";
+import { getUniquePost } from "../../utils/getUniquePost";
 
 export interface PostData {
     content: string
@@ -23,9 +25,14 @@ export default function Home(){
     const { user } = useAuth()
     const [ posts, setPosts ] = useState<PostData[]>([]);
     const [ loading, setLoading ] = useState(true)
+    const { id } = useParams()
+    
 
     async function getNewPosts(){
-        setPosts(await getPosts())
+        if(id)
+            setPosts(await getUniquePost(id))
+        else
+            setPosts(await getPosts())
     }
 
     function generetePosts(){
@@ -76,7 +83,7 @@ export default function Home(){
                     <Profile user={!user.id?null:user}/>
                 </Header>
                 <PostsArea>
-                    {user.id&&<NewPost getNewPosts={getNewPosts}/>}                  
+                    {(user.id && !id)&&<NewPost getNewPosts={getNewPosts}/>}                  
                     {
                         generetePosts()
                     }
