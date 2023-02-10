@@ -28,6 +28,18 @@ export default function Home(){
         setPosts(await getPosts())
     }
 
+    function generetePosts(){
+        if(!posts.length){
+            return <p>Não existe posts ainda, crie o primeiro!</p>
+        }
+        return posts.map((post, index)=>{
+            const liked = post.likes.includes(user.id)
+            return (
+                <Post key={index} isConected={!user.id?false:true} handleButtonLikeClicked={handleButtonLikeClicked} liked={liked} post={post}/>
+            )
+        })
+    }
+
     useEffect(()=>{
         if(!posts.length){
             setLoading(true)
@@ -66,12 +78,7 @@ export default function Home(){
                 <PostsArea>
                     {user.id&&<NewPost getNewPosts={getNewPosts}/>}                  
                     {
-                        posts.map((post, index)=>{
-                            const liked = post.likes.includes(user.id)
-                            return (
-                                <Post key={index} isConected={!user.id?false:true} handleButtonLikeClicked={handleButtonLikeClicked} liked={liked} post={post}/>
-                            )
-                        })
+                        generetePosts()
                     }
                 </PostsArea>
             </Container>

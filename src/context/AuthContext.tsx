@@ -7,14 +7,15 @@ import { setDoc, doc, getDoc } from "firebase/firestore";
 import { VerifyErroCode } from "../utils/firebaseErrosLocalized";
 
 export type UserProps = {
-  id: string,
-  name: string,
+  id: string
+  name: string
   avatar: string
+  user_type: string
 }
   
 type AuthContextType = {
-  user: UserProps,
-  signOutAccount: () => Promise<void>,
+  user: UserProps
+  signOutAccount: () => Promise<void>
   signInWithEmailAndPasswordFirebase: (email: string, password: string) => Promise<void>
   signUpWithEmailAndPasswordFirebase: (email: string, password: string, name: string, avatar: string | Blob) => Promise<void>
 }
@@ -26,7 +27,7 @@ type AuthContextProviderProps = {
 export const AuthContext = createContext({} as AuthContextType);
 
 export default function AuthContextProvider(props: AuthContextProviderProps){
-  const [user, setUser] = useState<UserProps>({id: "", name: "", avatar: ""});
+  const [user, setUser] = useState<UserProps>({id: "", name: "", avatar: "", user_type: ""});
 
   useEffect(()=>{
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
@@ -35,9 +36,8 @@ export default function AuthContextProvider(props: AuthContextProviderProps){
         if(uid){
           const userData = await getUser(uid);
           setUser({
-            id: uid,
-            name: userData.name,
-            avatar: userData.avatar
+            ...userData,
+            id: uid
           });
         }
       }
@@ -65,7 +65,7 @@ export default function AuthContextProvider(props: AuthContextProviderProps){
         throw new Error("Usuario não existe, cadastre-o primeiro!");
       }else{
         const userData = await getUser(user.uid)
-        setUser({id: user.uid, name: userData.name, avatar: userData.avatar})
+        setUser({...userData, id: user.uid})
       }
     }catch(error: any){
       throw new Error(VerifyErroCode(error.code));
@@ -87,7 +87,7 @@ export default function AuthContextProvider(props: AuthContextProviderProps){
       const docSnap = await getDoc(docRef);
     
       if (docSnap.exists()) {
-        return docSnap.data()
+        return docSnap.data() as UserProps
       } else {
         throw new Error("Não foi possível encontrar o usuário");
       }
@@ -111,8 +111,8 @@ export default function AuthContextProvider(props: AuthContextProviderProps){
           image_url = response.data.secure_url
         })
       }
-      await setDoc(doc(db, "users", id), {id: id, name: name, avatar: image_url})
-      setUser({id, name, avatar: image_url})
+      await setDoc(doc(db, "users", id), {id: id, name: name, avatar: image_url, user_type: "user"})
+      setUser({id, name, avatar: image_url, user_type: "user"})
     }catch(error: any){
       throw new Error(VerifyErroCode(error.code));
     }

@@ -84,7 +84,7 @@ export const Description = styled.textarea`
 export const CloseModal = styled(Dialog.Close)`
     position: absolute;
     top: 10%;
-    left: 90%;
+    right: 10%;
     cursor: pointer;
     background-color: transparent;
     border: none;

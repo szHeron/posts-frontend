@@ -1,13 +1,16 @@
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
+import { Timestamp } from "firebase/firestore";
 import { UserProps } from "../../context/AuthContext";
 import { HeaderPostContainer } from "./styles";
 import { Avatar } from "../Avatar";
-import { Timestamp } from "firebase/firestore";
+import { PostOptions } from "../PostOptions";
 
 interface PostHeader{
     author: UserProps
     createdAt: Timestamp
+    postId: string
+    imageUrl: string
 }
 
 function getDateFormat(date: Date){
@@ -22,11 +25,14 @@ export function PostHeader(props: PostHeader){
 
     return (
         <HeaderPostContainer>
-            <Avatar url={props.author.avatar}/>
-            <div>
-                <p>{props.author.name}</p>
-                <span>{createdAt}</span>
-            </div>
+            <section>
+                <Avatar url={props.author.avatar}/>
+                <div>
+                    <p>{props.author.name}</p>
+                    <span>{createdAt}</span>
+                </div>
+            </section>
+            <PostOptions postId={props.postId} imageUrl={props.imageUrl} authorId={props.author.id}/>
         </HeaderPostContainer>
     )
 }
