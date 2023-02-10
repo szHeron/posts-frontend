@@ -1,53 +1,51 @@
 import styled from "styled-components";
 
-export const ContentInput = styled.div`
+export const ContentButton = styled.button`
     display: flex;
-    flex-direction: column;
+    border: none;
+    background-color: ${({theme})=>theme.colors.darkGray};
     align-items: center;
-    width: 40vw;
-    color: white;
     padding: 10px;
-    margin-top: 15px;
-    margin-bottom: 15px;
-    background-color: transparent;
-    border: 1px solid ${({theme})=>theme.colors.activity};
-    border-radius: 12px;
-    transition: all;
+    font-size: medium;
+    font-weight: 500;
+    color: #A4A4A4;
+    border-radius: 16px;
+    gap: 4px;
     cursor: pointer;
 
-    :hover {
-        svg {
-            height: 68px;
-            width: 68px;
-        }
-    }
-
-    p    {
-        width: 40%;
-        text-align: center;
-        color: gray;
-        font-size: small;
-        font-weight: 200;
-    }
-
-    @media (max-width: 426px) {
-        padding: 8px 0 0 0;
-        width: 100%;
+    img {
+        width: 24px;
+        height: 24px;
     }
 `
 
-export const Preview = styled.img`
-    align-self: center;
-    width: auto;
-    height: 16rem;
-
-    @media (min-width: 768px) and (max-width: 1366px){
-        width: auto;
-        height: 10rem;
+export const Preview = styled.div`
+    position: relative;
+    
+    button{
+        position: absolute;
+        left: 90%;
+        padding: 2px;
+        border: none;
+        border-radius: 100%;
+        background-color: ${({theme})=>theme.colors.activity};
+        cursor: pointer;
     }
 
-    @media (max-width: 426px) {
+    img{
         width: auto;
-        height: 9rem;
+        height: 8rem;
+        margin: 8px 0 8px 0;
+        border: 1px solid ${({theme})=>theme.colors.activity};
+
+        @media (min-width: 768px) and (max-width: 1366px){
+            width: auto;
+            height: 10rem;
+        }
+
+        @media (max-width: 426px) {
+            width: auto;
+            height: 9rem;
+        }
     }
 `

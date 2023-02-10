@@ -1,69 +1,43 @@
 import styled from "styled-components";
-import * as Dialog from "@radix-ui/react-dialog"
-import { Button } from "../../styles/Button";
+import { Title } from "../../pages/Login/styles";
 
-export const NewPostTrigger = styled(Dialog.Trigger)`
+export const NewPostContainer = styled.div`
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
+    background-color: ${({theme})=>theme.colors.postBackground};
     width: 50vw;
     color: white;
-    padding: 10px;
+    padding: 24px;
     margin-bottom: 15px;
-    border: 1px solid ${({theme})=>theme.colors.activity};
     border-radius: 12px;
-    background-color: rgba(108, 0, 255, 0.1);
-    transition: all;
-    cursor: pointer;
 
-    :hover {
-        svg {
-            height: 68px;
-            width: 68px;
-        }
+    form {
+        width: 100%;
+    }
+
+    span {
+        color: #FF9494;
+        font-weight: 300;
+    }
+    
+    @media (max-width: 426px) {
+        width: 85vw;
     }
 `
 
-export const PostContent = styled(Dialog.Content)`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: absolute;
-    background-color: ${({theme})=>theme.colors.background};
-    color: white;
-    width: 60vw;
-    padding: 20px;
-    top: 1%;
-    left: 20%;
-    border-radius: 26px;
-    
-    form {
-        display: flex;
-        flex-direction: column;
-
-        span {
-            color: #FF9494;
-            font-weight: 300;
-        }
-    }
-
-    @media (max-width: 426px) {
-        padding: 12px;
-        width: 90vw;
-        left: 2%;
-
-        form {
-            width: 100%;
-        }
-    }
+export const NewPostTitle = styled(Title)`
+    font-size: large;
+    font-weight: 600;
 `
 
 export const Description = styled.textarea`
     padding: 18px;
     margin-top: 5px;
-    margin-bottom: 5px;
-    background-color: transparent;
-    border: 1px solid ${({theme})=>theme.colors.primary};
+    margin-bottom: 12px;
+    background-color: ${({theme})=>theme.colors.darkGray};
+    border: 1px solid ${({theme})=>theme.colors.darkGray};
+    width: calc(100% - 42px);
     border-radius: 8px;
     color: white;
     font-size: medium;
@@ -81,23 +55,27 @@ export const Description = styled.textarea`
     }
 `
 
-export const CloseModal = styled(Dialog.Close)`
-    position: absolute;
-    top: 10%;
-    right: 10%;
-    cursor: pointer;
-    background-color: transparent;
-    border: none;
-
-    @media (max-width: 426px) {
-        left: 80%;
-    }
+export const GroupButtons = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
 `
 
-export const FinishedButton = styled(Button)`
-    background-color: #228B22;
+export const CreateNewPostButton = styled.button`
+    display: flex;
+    border: none;
+    background-color: ${({theme})=>theme.colors.activity};
+    align-items: center;
+    padding: 10px;
+    font-size: medium;
+    font-weight: 500;
+    color: #fff;
+    border-radius: 16px;
+    cursor: pointer;
 
     :hover {
-        background-color: #2aae2a;
+        background-color: ${({theme})=>theme.colors.hover};
     }
 `

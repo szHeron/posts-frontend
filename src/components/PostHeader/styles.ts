@@ -29,7 +29,7 @@ export const HeaderPostContainer = styled.div`
 
     span {
         font-weight: 400;
-        color: ${({theme})=>theme.colors.darkGray};
+        color: ${({theme})=>theme.colors.primary};
     }
 
     button {
