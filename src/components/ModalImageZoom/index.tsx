@@ -1,5 +1,5 @@
 import * as Dialog from '@radix-ui/react-dialog';
-import { PostImage, ImageZoomContent } from './style';
+import { PostImage, ImageZoomContent } from './styles';
 
 export function ModalImageZoom({content}: {content: string}){
     return (

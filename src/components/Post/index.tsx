@@ -5,16 +5,16 @@ import { PostData } from "../../pages/Home";
 
 interface PostProps {
     handleButtonLikeClicked: (postId: string, liked: boolean) => void
+    getNewPosts: () => void
     liked: boolean
     post: PostData
     isConected: boolean
 }
 
 export function Post(props: PostProps){
-    console.log(props.isConected)
     return(
         <PostContainer>
-            <PostHeader createdAt={props.post.createdAt} author={props.post.author} postId={props.post.postId}/>
+            <PostHeader getNewPosts={props.getNewPosts} createdAt={props.post.createdAt} author={props.post.author} postId={props.post.postId}/>
             {props.post.content&&<ModalImageZoom content={props.post.content}/>}
             <Description>
                 <span>{props.post.description}</span>

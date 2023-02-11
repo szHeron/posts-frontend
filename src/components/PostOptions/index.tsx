@@ -1,13 +1,12 @@
-import { useState } from 'react';
-import * as Popover from '@radix-ui/react-popover';
+import { useState } from "react";
+import * as Popover from "@radix-ui/react-popover";
 import copy from "copy-to-clipboard";
-import useAuth from '../../hook/useAuth';
-import { DeletePost } from "../../utils/deletePost";
+import { AlertDeletePost } from "../AlertDeletePost";
+import useAuth from "../../hook/useAuth";
 import share from "../../assets/share.svg"
-import trash from "../../assets/trash.svg"
-import { PostOptionsContent, PostOptionsArrow, Option } from './styles';
+import { PostOptionsContent, PostOptionsArrow, Option } from "./styles";
 
-export function PostOptions({postId, authorId}: {postId: string, authorId: string}){
+export function PostOptions({postId, authorId, getNewPosts}: {postId: string, authorId: string, getNewPosts: () => void}){
     const [ copyState, setCopyState ] = useState(false)
     const { user } = useAuth()
 
@@ -48,10 +47,7 @@ export function PostOptions({postId, authorId}: {postId: string, authorId: strin
                             )}
                     </Option>
                     {
-                        verifyUserIsAuthorOrAdmin()&&<Option onClick={()=>{DeletePost(postId)}}>
-                             <img src={trash} alt="Deletar post"/>
-                            Excluir
-                        </Option>
+                        verifyUserIsAuthorOrAdmin()&&<AlertDeletePost getNewPosts={getNewPosts} postId={postId}/>
                     }
                     <PostOptionsArrow/>
                 </PostOptionsContent>

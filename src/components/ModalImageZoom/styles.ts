@@ -29,6 +29,4 @@ export const ImageZoomContent = styled(Dialog.Content)`
             height: auto;
         }
     }
-
-    
 `

@@ -10,6 +10,7 @@ interface PostHeader{
     author: UserProps
     createdAt: Timestamp
     postId: string
+    getNewPosts: () => void
 }
 
 function getDateFormat(date: Date){
@@ -31,7 +32,7 @@ export function PostHeader(props: PostHeader){
                     <span>{createdAt}</span>
                 </div>
             </section>
-            <PostOptions postId={props.postId} authorId={props.author.id}/>
+            <PostOptions getNewPosts={props.getNewPosts} postId={props.postId} authorId={props.author.id}/>
         </HeaderPostContainer>
     )
 }

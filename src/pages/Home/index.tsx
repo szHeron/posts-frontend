@@ -27,7 +27,6 @@ export default function Home(){
     const [ loading, setLoading ] = useState(true)
     const { id } = useParams()
     
-
     async function getNewPosts(){
         if(id)
             setPosts(await getUniquePost(id))
@@ -42,7 +41,7 @@ export default function Home(){
         return posts.map((post, index)=>{
             const liked = post.likes.includes(user.id)
             return (
-                <Post key={index} isConected={!user.id?false:true} handleButtonLikeClicked={handleButtonLikeClicked} liked={liked} post={post}/>
+                <Post key={index} getNewPosts={getNewPosts} isConected={!user.id?false:true} handleButtonLikeClicked={handleButtonLikeClicked} liked={liked} post={post}/>
             )
         })
     }
