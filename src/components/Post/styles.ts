@@ -17,16 +17,6 @@ export const PostContainer = styled.div`
     }
 `
 
-export const PostImage = styled.img`
-    object-fit: cover;
-    width: auto;
-    height: 50vh;
-
-    @media (max-width: 426px) {
-        height: 40vw;
-    }
-`
-
 export const Description = styled.div`
     display: flex;
     flex-direction: row;

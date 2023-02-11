@@ -1,4 +1,5 @@
-import { PostContainer, PostImage, Description, Actions, Action } from "./styles";
+import { PostContainer, Description, Actions, Action } from "./styles";
+import { ModalImageZoom } from "../ModalImageZoom";
 import { PostHeader } from "../PostHeader";
 import { PostData } from "../../pages/Home";
 
@@ -14,7 +15,7 @@ export function Post(props: PostProps){
     return(
         <PostContainer>
             <PostHeader createdAt={props.post.createdAt} author={props.post.author} postId={props.post.postId}/>
-            {props.post.content&&<PostImage alt="Imagem sobre o post" src={props.post.content}/>}
+            {props.post.content&&<ModalImageZoom content={props.post.content}/>}
             <Description>
                 <span>{props.post.description}</span>
             </Description>
