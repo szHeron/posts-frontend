@@ -58,7 +58,7 @@ export const Description = styled.textarea`
 export const GroupButtons = styled.div`
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: flex-end;
     justify-content: space-between;
     width: 100%;
 `
