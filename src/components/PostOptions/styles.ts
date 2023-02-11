@@ -9,21 +9,12 @@ export const PostOptionsContent = styled(Popover.Content)`
     color: #fff;
     width: 10vw;
     border-radius: 12px;
-    padding: 22px 10px 10px 10px;
+    padding: 14px;
 
     @media (max-width: 426px) {
         width: 40vw;
     }
 
-`
-
-export const ClosePostOptions = styled(Popover.Close)`
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    cursor: pointer;
-    background-color: transparent;
-    border: none;
 `
 
 export const PostOptionsArrow = styled(Popover.Arrow)`
@@ -37,21 +28,28 @@ export const Option = styled.button`
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
-    margin-bottom: 8px;
-    font-weight: 500;
+    font-weight: 400;
     font-size: medium;
-    color: #fff;
+    color: #A4A4A4;
     width: 100%;
+    padding: 12px;
     border: none;
     background-color: transparent;
     cursor: pointer;
      
-    svg{
+    img{
+        width: 22px;
+        height: 22px;
         margin-right: 14px;
     }
 
     span {
         font-weight: 300;
         color: #22bb33;
+    }
+
+    :hover {
+        background-color: #373737;
+        border-radius: 8px;
     }
 `
