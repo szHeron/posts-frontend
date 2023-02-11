@@ -25,12 +25,20 @@ export const ProfileContainer = styled.div`
     }
 
     button {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 8px;
         cursor: pointer;
         font-weight: 300;
         font-size: 1em;
         color: gray;
         background-color: transparent;
         border: none;
-    }
 
+        svg {
+            fill: gray;
+        }
+    }
 `
