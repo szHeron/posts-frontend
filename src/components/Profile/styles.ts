@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { ButtonOutline } from "../../styles/Button";
 
 export const ProfileContainer = styled.div`
     display: flex;
@@ -9,8 +10,8 @@ export const ProfileContainer = styled.div`
     padding: 8px;
     border-radius: 8px;
 
-    @media (max-width: 426px) {
-        left: 5%;
+    a{
+        width: 20vw;
     }
 
     p{
@@ -24,21 +25,34 @@ export const ProfileContainer = styled.div`
         margin-left: 12px;
     }
 
-    button {
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-start;
-        align-items: center;
-        gap: 8px;
-        cursor: pointer;
-        font-weight: 300;
-        font-size: 1em;
-        color: gray;
-        background-color: transparent;
-        border: none;
+    @media (max-width: 426px) {
+        left: 5%;
 
-        svg {
-            fill: gray;
+        a {
+            width: 100vw;
         }
+    }
+`
+
+export const LogInButton = styled(ButtonOutline)`
+    margin-top: 0;
+    padding: 12px;
+`
+
+export const LogoutButton = styled.button`
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-weight: 300;
+    font-size: 1em;
+    color: gray;
+    background-color: transparent;
+    border: none;
+
+    svg {
+        fill: gray;
     }
 `
