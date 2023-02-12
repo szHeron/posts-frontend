@@ -41,6 +41,8 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 - [Typescript](https://www.typescriptlang.org/)
 - [Vitejs](https://vitejs.dev/)
 - [Reactjs](https://pt-br.reactjs.org/)
+- [StyledComponents](https://styled-components.com/)
+- [Radix](https://www.radix-ui.com/)
 - [Firebase](https://firebase.google.com/)
 - [Vercel](https://vercel.com/)
 
