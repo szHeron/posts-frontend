@@ -62,7 +62,7 @@ Para iniciá-lo, siga os passos abaixo:
 $ yarn ou npm install
 
 # Iniciar o projeto
-$ yarn start ou npm start
+$ yarn start ou npm run dev
 ```
 
 O app estará disponível no seu browser pelo endereço http://localhost:5173.
