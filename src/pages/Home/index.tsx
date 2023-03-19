@@ -28,10 +28,12 @@ export default function Home(){
     const { id } = useParams()
     
     async function getNewPosts(){
-        if(id)
+        if(id){
             setPosts(await getUniquePost(id))
-        else
+        }
+        else{
             setPosts(await getPosts())
+        }
     }
 
     function generetePosts(){
