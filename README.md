@@ -14,17 +14,11 @@
 
 <div align="flex-start">
   <img src="https://img.shields.io/badge/typescript-%23323330.svg?style=for-the-badge&logo=typescript&logoColor=blue" alt="Typescript"/>
-  
   <img src="https://img.shields.io/badge/vite-%23323330.svg?style=for-the-badge&logo=vite&logoColor=white" alt="Vite"/>
-
   <img src="https://img.shields.io/badge/react-%23323330.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB" alt="React"/>
-
   <img src="https://img.shields.io/badge/firebase-%23323330.svg?style=for-the-badge&logo=firebase" alt="Firebase"/>
-
-  <img src="https://img.shields.io/badge/vercel-%23323330.svg?style=for-the-badge&logo=vercel&logoColor=white" alt="Vercel"/>
-
+  <img src="https://img.shields.io/badge/vercel-%23323330.svg?style=for-the-badge&logo=vercel&logoColor=white" alt="Vercel"/
   <img src="https://img.shields.io/badge/Visual%20Studio%20Code-%23323330.svg?style=for-the-badge&logo=visual-studio-code&logoColor=blue" alt="VScode"/>
-
   <img height=28 src="https://img.shields.io/badge/license-MIT-blue" alt="License">
 </div>
 
