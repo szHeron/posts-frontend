@@ -3,14 +3,14 @@ import { Timestamp } from "firebase/firestore";
 import { useParams } from "react-router-dom";
 import { getPosts } from "../../utils/getPosts";
 import ActivityIndicator from "../../components/ActivityIndicator/ActivityIndicator";
-import { Container, Header, PostsArea } from "./styles"
 import { Post } from "../../components/Post"
 import { Profile } from "../../components/Profile"
-import useAuth from "../../hook/useAuth"
 import { NewPost } from "../../components/NewPost"
+import useAuth from "../../hook/useAuth"
 import { UserProps } from "../../context/AuthContext";
 import { updatePost } from "../../utils/updatePost";
 import { getUniquePost } from "../../utils/getUniquePost";
+import { Container, Header, PostsArea } from "./styles"
 
 export interface PostData {
     content: string
